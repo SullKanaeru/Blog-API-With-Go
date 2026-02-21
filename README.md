@@ -1,3 +1,5 @@
+# Akses link ini untuk testing api yang sudah dipublic: https://drive.google.com/file/d/1V_U_F3XLIKpFLXkGr--COAxLLOHVkuZ-/view?usp=sharing
+
 # 🚀 Golang Blog API Server
 
 RESTful API untuk platform blogging yang dibangun menggunakan **Go (Golang)**, **Fiber framework**, dan **PostgreSQL**. Proyek ini dilengkapi dengan sistem autentikasi berbasis *Cookie*, *Role-Based Access Control* (RBAC), serta keamanan level *Resource Ownership*.
@@ -80,32 +82,3 @@ Berikut adalah daftar rute yang tersedia untuk dihubungkan ke antarmuka aplikasi
 | `DELETE` | `/api/posts/:id` | Menghapus artikel | Khusus Pemilik |
 
 ---
-
-## 💡 Catatan Penting untuk Integrasi UI (Front-End)
-
-Karena API ini menggunakan pengamanan **HTTP-Only Cookies** untuk JWT, saat melakukan proses pemanggilan data ( *Fetch/Axios* ) dari antarmuka *front-end* untuk *endpoint* yang **Butuh Login**, pastikan untuk mengaktifkan mode pengiriman kredensial.
-
-**Contoh menggunakan Axios:**
-
-```javascript
-axios.get('http://localhost:3000/api/users/me', {
-    withCredentials: true // 👈 INI SANGAT PENTING
-})
-.then(response => console.log(response.data))
-.catch(error => console.error(error));
-
-```
-
-**Contoh menggunakan Fetch API:**
-
-```javascript
-fetch('http://localhost:3000/api/users/me', {
-    method: 'GET',
-    credentials: 'include' // 👈 INI SANGAT PENTING
-})
-.then(res => res.json())
-.then(data => console.log(data));
-
-```
-
-Jika pengaturan kredensial ini tidak diaktifkan, *browser* tidak akan mengirimkan *cookie* ke server, dan sistem *back-end* akan menolak akses dengan status `401 Unauthorized`.
